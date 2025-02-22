@@ -32,6 +32,17 @@ app.post('/api/products', async (req, resp) => {
     }
 });
 
+//Get From ID
+app.get('/api/product/:id', async (req, resp) => {
+    try{
+        const {id} = req.params;
+        const product = await Product.findById(id);
+        resp.status(200).json({product});
+    }catch(error){
+        resp.status(500).json({message: error.message});
+    }
+});
+
 //aquí se conecta a la base de datos
 mongoose.connect('mongodb+srv://admin:admin@villanosapi.fqj9u.mongodb.net/villanosApi?retryWrites=true&w=majority&appName=villanosApi')
 .then(() => {
