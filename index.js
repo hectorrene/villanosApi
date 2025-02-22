@@ -22,6 +22,7 @@ app.get('/api/products', async (req, resp) => {
     }
 });
 
+//Aquí los agrega a la base de datos
 app.post('/api/products', async (req, resp) => {
     try {
         const product = await Product.create(req.body); 
