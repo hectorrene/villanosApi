@@ -1,3 +1,4 @@
+const { json } = require('express');
 const Product = require('../models/product.model.js');
 
 const getProducts = async (req, resp) => {
@@ -59,10 +60,44 @@ const deleteProduct = async (req, resp) => {
     
 };
 
+
+//por
+const getByPalabraClave = async (req, resp) => {
+    try{
+        const { poder } = req.params;
+
+        const regex = new RegExp(`(^|, )${poder}(,|$)`, "i");
+        
+        const product = await Product.find({
+            palabra_clave: { $regex: regex },
+        });
+        
+        resp.status(200).json(product);
+    }catch (error){
+        resp.status(500).json({ message: error.message })
+    }
+}
+
+const getByEstado = async (req, resp) => {
+    try{
+        const { estado } = req.params;
+        
+        const product = await Product.find({
+            estado: estado ,
+        });
+
+        resp.status(200).json(product);
+    } catch(error){
+        resp.status(500).json({message: error.message});
+    }
+}
+
 module.exports = {
     getProducts,
     getProduct,
     deleteProduct,
     updateProduct,
-    postProduct
+    postProduct,
+    getByPalabraClave,
+    getByEstado
 }

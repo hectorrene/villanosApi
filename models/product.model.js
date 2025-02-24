@@ -11,7 +11,7 @@ const ProductSchema = mongoose.Schema(
         primera_aparicion: {type:Date, required: true},
         fecha_nacimiento: Date,
         estado: {type:String, required: true},
-        imagen: String,
+        imagen: {type:String, required: false}
     }
 );
 
