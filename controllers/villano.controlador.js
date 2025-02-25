@@ -92,6 +92,21 @@ const getByEstado = async (req, resp) => {
     }
 }
 
+const getByFranquicia = async (req, resp) => {
+    try{
+        const { franquicia } = req.params;
+        
+        const product = await Product.find({
+            franquicia: franquicia,
+        });
+
+        resp.status(200).json(product);
+    } catch(error){
+        resp.status(500).json({message: error.message});
+    }
+}
+
+
 module.exports = {
     getProducts,
     getProduct,
@@ -99,5 +114,6 @@ module.exports = {
     updateProduct,
     postProduct,
     getByPalabraClave,
-    getByEstado
+    getByEstado,
+    getByFranquicia
 }

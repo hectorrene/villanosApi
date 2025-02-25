@@ -79,10 +79,13 @@ app.get('/', (req, resp) => {
 // });
 
 //aquí se conecta a la base de datos
-mongoose.connect('mongodb+srv://admin:admin@villanosapi.fqj9u.mongodb.net/villanosApi?retryWrites=true&w=majority&appName=villanosApi')
+//aquí se conecta a la base de datos
+mongoose.connect('mongodb+srv://admin:admin@villanosapi.fqj9u.mongodb.net/villanosApi?retryWrites=true&w=majority&appName=villanosApi', {
+    dbName: 'villanosApi'
+})
 .then(() => {
-    console.log('Connected to MongoDB');
+    console.log('Connected to MongoDB:', mongoose.connection.name);
 })
 .catch((error) => {
-    console.log('Error connecting to MongoDB', error);
+    console.log('Error connecting to MongoDB', error);
 });

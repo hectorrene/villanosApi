@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Product = require("../models/product.model.js");
-const { getProducts, getProduct, deleteProduct, updateProduct, postProduct, getByPalabraClave, getByEstado }= require('../controllers/villano.controlador.js');
+const { getProducts, getProduct, deleteProduct, updateProduct, postProduct, getByPalabraClave, getByEstado, getByFranquicia }= require('../controllers/villano.controlador.js');
 
 
 router.get('/', getProducts );
@@ -17,6 +17,8 @@ router.delete('/:id', deleteProduct);
 router.get('/villano/:poder', getByPalabraClave);
 
 router.get('/villano/estado/:estado', getByEstado);
+
+router.get('/villano/franquicia/:franquicia', getByFranquicia);
 
 
 
